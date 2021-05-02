@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PAN Validator</title>
+<script defer src="bundle.js"></script></head>
+<body>
+
+    <div class="row">
+        <div class="col s12">
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="col s6">
+                    <h2>PAN Validator</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="col s6">
+                    <div class="input-field ">
+                            <input placeholder="Ex. 42424424242424242" id="card" type="text" maxlength="18" class="validate">
+                            <label for="card">Card Number</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="col s6">
+                    <ul class="collection with-header">
+                        <li class="collection-header"><h4>Results</h4></li>
+                        <li class="collection-item"><div>Luhn Algorithm Check<div id="luhn" class="secondary-content"><i class="material-icons red-text">close</i></div></div></li>
+                        <li class="collection-item"><div>Major Industry Identifier<div id="mii" class="secondary-content"><i class="material-icons red-text">close</i></div></div></li>
+                        <li class="collection-item"><div>Issuer identification number<div id= "iin" class="secondary-content"><i class="material-icons red-text">close</i></div></div></li>
+                        <li class="collection-item"><div>Personal Account Number<div id="pan" class="secondary-content"><i class="material-icons red-text">close</i></div></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./bundle.js"></script>
+</body>
+</html>
