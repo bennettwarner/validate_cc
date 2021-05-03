@@ -4,13 +4,17 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+	"github.com/docopt/docopt-go"
 	"github.com/fatih/color"
 	"github.com/joeljunstrom/go-luhn"
 	"io/fs"
 	"net/http"
+	"os"
 	"regexp"
 	"strconv"
 )
+
+var buildNumber = "21.05"
 
 type card struct {
 	Number    string
@@ -138,14 +142,34 @@ func serveWeb(port string) {
 }
 
 func main() {
-	// Print with default helper functions
-	color.Cyan("Prints text in cyan.")
 
-	// A newline will be appended automatically
-	color.Blue("Prints %s in blue.", "text")
+	usage := `validate_cc.
 
-	// These are using the default foreground colors
-	color.Red("We have red")
-	color.Magenta("And many others ..")
-	serveWeb("8090")
+Usage:
+  validate_cc card <card_number>...
+  validate_cc web [--port=<port>]
+  validate_cc -h | --help
+  validate_cc --version
+
+Options:
+  -h --help     Show this screen.
+  --version     Show version.
+  --port=<port>  Speed in knots [default: 8090].`
+
+	arguments, _ := docopt.ParseDoc(usage)
+	fmt.Println(arguments)
+	if version, _ := arguments.Bool("--version"); version {
+		color.Magenta("Version %s", buildNumber)
+		os.Exit(0)
+	}
+	if web, _ := arguments.Bool("web"); web {
+		port, _ := arguments.String("--port")
+		serveWeb(port)
+		}
+	if card, _ := arguments.Bool("card"); card {
+		cardNumber, err := arguments."<card_number>"[0]
+		if err != nil {
+			panic(err)
+		}
+	}
 }
