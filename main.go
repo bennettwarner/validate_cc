@@ -166,10 +166,10 @@ Options:
 		port, _ := arguments.String("--port")
 		serveWeb(port)
 		}
-	if card, _ := arguments.Bool("card"); card {
-		cardNumber, err := arguments."<card_number>"[0]
-		if err != nil {
-			panic(err)
-		}
-	}
+	//if card, _ := arguments.Bool("card"); card {
+	//	cardNumber, err := arguments."<card_number>"[0]
+	//	if err != nil {
+	//		panic(err)
+	//	}
+	//}
 }
